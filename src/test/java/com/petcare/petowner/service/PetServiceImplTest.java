@@ -75,6 +75,7 @@ class PetServiceImplTest {
         when(userRepository.findAllById(Set.of(1L))).thenReturn(List.of(user));
         when(petRepository.save(pet)).thenReturn(pet);
         when(petMapper.toDto(pet)).thenReturn(responseDTO);
+        when(userRepository.allOwnersHaveSameAddress(any())).thenReturn(true);
 
         PetResponseDTO result = petService.createPet(requestDTO, Set.of(1L));
 
@@ -91,9 +92,6 @@ class PetServiceImplTest {
         User anotherUser = new User();
         anotherUser.setId(2L);
         anotherUser.setAddress(anotherAddress);
-
-        when(petMapper.toEntity(requestDTO)).thenReturn(pet);
-        when(userRepository.findAllById(Set.of(1L))).thenReturn(List.of(user, anotherUser));
 
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
                 () -> petService.createPet(requestDTO, ownerIds));
