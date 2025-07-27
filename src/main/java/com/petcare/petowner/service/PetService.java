@@ -15,5 +15,6 @@ public interface PetService {
     List<PetResponseDTO> getPetsByCity(String city);
     List<PetResponseDTO> getPetsByUser(Long userId);
     List<PetResponseDTO> findPetsByFemaleOwnersInCity(String city);
+    List<PetResponseDTO> findPetsOwnedByUser(String name, String firstName);
 }
 

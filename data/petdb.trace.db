@@ -1,0 +1,56 @@
+2025-07-27 12:56:52.626375+05:30 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM  [*]USER"; expected "identifier"; SQL statement:
+SELECT * FROM  USER [42001-232]
+2025-07-27 12:56:53.619008+05:30 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM  [*]USER"; expected "identifier"; SQL statement:
+SELECT * FROM  USER [42001-232]
+2025-07-27 13:53:14.542681+05:30 jdbc[35]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-232]
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:217)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:134)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:368)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:205)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:752)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:731)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The connection was not closed by the application and is garbage collected [90018-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 16 more
+2025-07-27 16:44:04.230289+05:30 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM USERS \000d\000aupdate [*]users set GENDER = 'FEMALE' where id = 32"; SQL statement:
+SELECT * FROM USERS 
+update users set GENDER = 'FEMALE' where id = 32 [42000-232]
+2025-07-27 16:44:35.134620+05:30 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM USERS \000d\000aupdate [*]users set GENDER = 'FEMALE' where id = 32"; SQL statement:
+SELECT * FROM USERS 
+update users set GENDER = 'FEMALE' where id = 32 [42000-232]
+2025-07-27 16:44:36.034404+05:30 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM USERS \000d\000aupdate [*]users set GENDER = 'FEMALE' where id = 32"; SQL statement:
+SELECT * FROM USERS 
+update users set GENDER = 'FEMALE' where id = 32 [42000-232]
+2025-07-27 16:44:36.304816+05:30 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM USERS \000d\000aupdate [*]users set GENDER = 'FEMALE' where id = 32"; SQL statement:
+SELECT * FROM USERS 
+update users set GENDER = 'FEMALE' where id = 32 [42000-232]
+2025-07-27 16:44:36.479448+05:30 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM USERS \000d\000aupdate [*]users set GENDER = 'FEMALE' where id = 32"; SQL statement:
+SELECT * FROM USERS 
+update users set GENDER = 'FEMALE' where id = 32 [42000-232]
+2025-07-27 16:44:36.651381+05:30 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM USERS \000d\000aupdate [*]users set GENDER = 'FEMALE' where id = 32"; SQL statement:
+SELECT * FROM USERS 
+update users set GENDER = 'FEMALE' where id = 32 [42000-232]
+2025-07-27 16:44:36.811326+05:30 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM USERS \000d\000aupdate [*]users set GENDER = 'FEMALE' where id = 32"; SQL statement:
+SELECT * FROM USERS 
+update users set GENDER = 'FEMALE' where id = 32 [42000-232]

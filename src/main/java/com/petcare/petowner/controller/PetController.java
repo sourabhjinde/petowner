@@ -71,7 +71,7 @@ public class PetController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "List of pets retrieved")
     })
-    @GetMapping("/by-city")
+        @GetMapping("/by-city")
     public ResponseEntity<List<PetResponseDTO>> getPetsByCity(@RequestParam String city) {
         return ResponseEntity.ok(petService.getPetsByCity(city));
     }
@@ -83,6 +83,15 @@ public class PetController {
     @GetMapping("/women-owned-pets/by-city")
     public ResponseEntity<List<PetResponseDTO>> getWomenOwnedPetsByCity(@RequestParam String city) {
         return ResponseEntity.ok(petService.findPetsByFemaleOwnersInCity(city));
+    }
+
+    @Operation(summary = "Get pets owned by a user", description = "Returns pets owned by user")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "List of pets retrieved")
+    })
+    @GetMapping("/by-user")
+    public ResponseEntity<List<PetResponseDTO>> getPetsOwnedByUser(@RequestParam String name, @RequestParam String firstName) {
+        return ResponseEntity.ok(petService.findPetsOwnedByUser(name, firstName));
     }
 
     // DTO to handle pet + ownerIds

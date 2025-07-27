@@ -5,6 +5,7 @@ import com.petcare.petowner.dto.UserRequestDTO;
 import com.petcare.petowner.dto.UserResponseDTO;
 import com.petcare.petowner.entity.Address;
 import com.petcare.petowner.entity.Gender;
+import com.petcare.petowner.entity.PetType;
 import com.petcare.petowner.entity.User;
 import com.petcare.petowner.exception.NotFoundException;
 import com.petcare.petowner.exception.ResourceNotFoundException;
@@ -135,7 +136,7 @@ class UserServiceImplTest {
 
     @Test
     void testGetUsersByPetTypeAndCity() {
-        when(userRepository.findUsersByPetTypeAndCity("Dog", "Mumbai")).thenReturn(List.of(user));
+        when(userRepository.findUsersByPetTypeAndCity(PetType.DOG, "Mumbai")).thenReturn(List.of(user));
         when(userMapper.toDto(user)).thenReturn(userResponseDTO);
 
         List<UserResponseDTO> result = userService.getUsersByPetTypeAndCity("Mumbai", "Dog");

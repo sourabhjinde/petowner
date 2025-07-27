@@ -12,6 +12,7 @@ import com.petcare.petowner.util.AddressHashUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -87,8 +88,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserResponseDTO> getUsersByPetTypeAndCity(String city, String type) {
-        return userRepository.findUsersByPetTypeAndCity(type, city).stream()
+    public List<UserResponseDTO> getUsersByPetTypeAndCity(String type, String city) {
+        var users = new ArrayList<>(userRepository.findUsersByPetTypeAndCity(PetType.fromString(type), city));
+        return users.stream()
                 .map(userMapper::toDto)
                 .toList();
     }

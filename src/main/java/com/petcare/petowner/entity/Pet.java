@@ -1,5 +1,6 @@
 package com.petcare.petowner.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,6 +30,7 @@ public class Pet {
             joinColumns = @JoinColumn(name = "pet_id"),
             inverseJoinColumns = @JoinColumn(name = "owner_id")
     )
+    @JsonBackReference
     private Set<User> owners = new HashSet<>();
 
     private boolean deceased;

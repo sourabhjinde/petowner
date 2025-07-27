@@ -24,7 +24,7 @@ public class User {
     @ManyToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    @ManyToMany(mappedBy = "owners")
+    @ManyToMany(mappedBy = "owners", fetch = FetchType.LAZY)
     private Set<Pet> pets = new HashSet<>();
 
     private boolean deceased;

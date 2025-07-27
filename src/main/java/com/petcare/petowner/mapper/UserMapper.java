@@ -22,8 +22,6 @@ public interface UserMapper {
 
     List<UserResponseDTO> toDtoList(List<User> users);
 
-    UserShortDTO toShortDto(User user);
-
     @Named("genderToString")
     default String genderToString(Gender gender) {
         return gender.name();

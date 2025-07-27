@@ -26,17 +26,14 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public PetResponseDTO createPet(PetRequestDTO petRequestDTO, Set<Long> ownerIds) {
-        Pet pet = petMapper.toEntity(petRequestDTO);
-        Set<User> owners = new HashSet<>(userRepository.findAllById(ownerIds));
+        boolean allOwnersHaveSameAddress = userRepository.allOwnersHaveSameAddress(ownerIds);
 
-        Set<Address> distinctAddresses = owners.stream()
-                .map(User::getAddress)
-                .collect(Collectors.toSet());
-
-        if (distinctAddresses.size() > 1) {
+        if (!allOwnersHaveSameAddress) {
             throw new IllegalArgumentException("All owners must share the same address to own the same pet.");
         }
 
+        Pet pet = petMapper.toEntity(petRequestDTO);
+        Set<User> owners = new HashSet<>(userRepository.findAllById(ownerIds));
         pet.setOwners(owners);
         var petEntity = petRepository.save(pet);
         return petMapper.toDto(petEntity);
@@ -87,6 +84,14 @@ public class PetServiceImpl implements PetService {
     @Override
     public List<PetResponseDTO> findPetsByFemaleOwnersInCity(String city) {
         List<Pet> pets = petRepository.findPetsByFemaleOwnersInCity(city);
+        return pets.stream()
+                .map(petMapper::toDto)
+                .toList();
+    }
+
+    @Override
+    public List<PetResponseDTO> findPetsOwnedByUser(String name, String firstName) {
+        List<Pet> pets = petRepository.findPetsOwnedByUser(name, firstName);
         return pets.stream()
                 .map(petMapper::toDto)
                 .toList();

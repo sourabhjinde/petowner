@@ -37,5 +37,16 @@ public interface PetRepository extends JpaRepository<Pet, Long> {
         WHERE o.gender = 'FEMALE' AND o.address.city = :city
     """)
     List<Pet> findPetsByFemaleOwnersInCity(@Param("city") String city);
+
+    @Query("""
+    SELECT p
+    FROM Pet p
+    JOIN p.owners o
+    WHERE LOWER(o.name) = LOWER(:name)
+      AND LOWER(o.firstName) = LOWER(:firstName)
+      AND p.deceased = false
+      AND o.deceased = false
+    """)
+    List<Pet> findPetsOwnedByUser(@Param("name") String name, @Param("firstName") String firstName);
 }
 
