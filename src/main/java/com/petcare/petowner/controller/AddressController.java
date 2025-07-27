@@ -20,6 +20,7 @@ import java.util.List;
 @RequestMapping("/api/addresses")
 @RequiredArgsConstructor
 @Tag(name = "Address API", description = "Operations related to Address management")
+@SuppressWarnings("unused")
 public class AddressController {
 
     private final AddressService addressService;
@@ -30,6 +31,7 @@ public class AddressController {
             @ApiResponse(responseCode = "400", description = "Invalid address input")
     })
     @PostMapping
+    @SuppressWarnings("unused")
     public ResponseEntity<AddressResponseDTO> createAddress(@Valid @RequestBody AddressRequestDTO addressRequestDTO) {
         var response = addressService.createAddress(addressRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -40,6 +42,7 @@ public class AddressController {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved list")
     })
     @GetMapping
+    @SuppressWarnings("unused")
     public ResponseEntity<List<AddressResponseDTO>> getAllAddresses() {
         return ResponseEntity.ok(addressService.getAllAddresses());
     }

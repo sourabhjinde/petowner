@@ -71,7 +71,7 @@ class UserServiceImplTest {
         user.setAge(32);
         user.setAddress(address);
 
-        userResponseDTO = new UserResponseDTO(1L, "Jinde", "Sourabh", 32, "MALE", null, null);
+        userResponseDTO = new UserResponseDTO(1L, "Jinde", "Sourabh", 32, "MALE", null);
     }
 
     @Test

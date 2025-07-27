@@ -19,6 +19,7 @@ import java.util.List;
 @RequestMapping("/users")
 @RequiredArgsConstructor
 @Tag(name = "Users", description = "Endpoints for managing users")
+@SuppressWarnings("unused")
 public class UserController {
 
     private final UserService userService;
@@ -29,6 +30,7 @@ public class UserController {
             @ApiResponse(responseCode = "400", description = "Invalid input data")
     })
     @PostMapping
+    @SuppressWarnings("unused")
     public ResponseEntity<UserResponseDTO> createUser(@RequestBody @Valid UserRequestDTO userRequestDto) throws Sha256Exception{
         var created = userService.createUser(userRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
@@ -40,6 +42,7 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "User not found")
     })
     @PutMapping("/{id}")
+    @SuppressWarnings("unused")
     public ResponseEntity<UserResponseDTO> updateUser(@PathVariable Long id, @RequestBody @Valid UserRequestDTO userRequestDto) throws Sha256Exception {
         var updated = userService.updateUser(id, userRequestDto);
         return ResponseEntity.ok(updated);
@@ -51,6 +54,7 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "User not found")
     })
     @PatchMapping("/{id}/death")
+    @SuppressWarnings("unused")
     public ResponseEntity<Void> markUserAsDeceased(@PathVariable Long id) {
         userService.markUserAsDeceased(id);
         return ResponseEntity.noContent().build();
@@ -61,6 +65,7 @@ public class UserController {
             @ApiResponse(responseCode = "200", description = "Users retrieved successfully")
     })
     @GetMapping("/by-name")
+    @SuppressWarnings("unused")
     public ResponseEntity<List<UserResponseDTO>> getByNameAndFirstName(@RequestParam String name, @RequestParam String firstName) {
         return ResponseEntity.ok(userService.getUsersByNameAndFirstName(name, firstName));
     }
@@ -70,6 +75,7 @@ public class UserController {
             @ApiResponse(responseCode = "200", description = "Users retrieved successfully")
     })
     @GetMapping("/by-pet")
+    @SuppressWarnings("unused")
     public ResponseEntity<List<UserResponseDTO>> getUsersByPetTypeAndCity(
             @RequestParam String type,
             @RequestParam String city) {

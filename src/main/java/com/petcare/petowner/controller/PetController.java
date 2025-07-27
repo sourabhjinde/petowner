@@ -20,6 +20,7 @@ import java.util.Set;
 @RequestMapping("/pets")
 @RequiredArgsConstructor
 @Tag(name = "Pets", description = "Operations related to pet management")
+@SuppressWarnings("unused")
 public class PetController {
 
     private final PetService petService;
@@ -30,6 +31,7 @@ public class PetController {
             @ApiResponse(responseCode = "400", description = "Invalid input")
     })
     @PostMapping
+    @SuppressWarnings("unused")
     public ResponseEntity<PetResponseDTO> createPet(@RequestBody @Valid PetRequestDTO petRequestDTO) {
         var created = petService.createPet(petRequestDTO, petRequestDTO.ownerIds());
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
@@ -41,6 +43,7 @@ public class PetController {
             @ApiResponse(responseCode = "404", description = "Pet not found")
     })
     @PutMapping("/{id}")
+    @SuppressWarnings("unused")
     public ResponseEntity<PetResponseDTO> updatePet(@PathVariable Long id, @RequestBody @Valid PetRequestDTO petRequestDTO) {
         var updated = petService.updatePet(id, petRequestDTO);
         return ResponseEntity.ok(updated);
@@ -52,6 +55,7 @@ public class PetController {
             @ApiResponse(responseCode = "404", description = "Pet not found")
     })
     @PatchMapping("/{id}/death")
+    @SuppressWarnings("unused")
     public ResponseEntity<Void> markPetAsDeceased(@PathVariable Long id) {
         petService.markPetAsDeceased(id);
         return ResponseEntity.noContent().build();
@@ -63,6 +67,7 @@ public class PetController {
             @ApiResponse(responseCode = "404", description = "User not found")
     })
     @GetMapping("/by-user/{userId}")
+    @SuppressWarnings("unused")
     public ResponseEntity<List<PetResponseDTO>> getPetsByUserId(@PathVariable Long userId) {
         return ResponseEntity.ok(petService.getPetsByUserId(userId));
     }
@@ -71,7 +76,8 @@ public class PetController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "List of pets retrieved")
     })
-        @GetMapping("/by-city")
+    @GetMapping("/by-city")
+    @SuppressWarnings("unused")
     public ResponseEntity<List<PetResponseDTO>> getPetsByCity(@RequestParam String city) {
         return ResponseEntity.ok(petService.getPetsByCity(city));
     }
@@ -81,6 +87,7 @@ public class PetController {
             @ApiResponse(responseCode = "200", description = "List of pets retrieved")
     })
     @GetMapping("/women-owned-pets/by-city")
+    @SuppressWarnings("unused")
     public ResponseEntity<List<PetResponseDTO>> getWomenOwnedPetsByCity(@RequestParam String city) {
         return ResponseEntity.ok(petService.findPetsByFemaleOwnersInCity(city));
     }
@@ -90,6 +97,7 @@ public class PetController {
             @ApiResponse(responseCode = "200", description = "List of pets retrieved")
     })
     @GetMapping("/by-user")
+    @SuppressWarnings("unused")
     public ResponseEntity<List<PetResponseDTO>> getPetsOwnedByUser(@RequestParam String name, @RequestParam String firstName) {
         return ResponseEntity.ok(petService.findPetsOwnedByUser(name, firstName));
     }
