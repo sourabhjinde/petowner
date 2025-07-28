@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AddressMapperTest {
 
     @Autowired
+    @SuppressWarnings("unused")
     private AddressMapper addressMapper;
 
     @Test

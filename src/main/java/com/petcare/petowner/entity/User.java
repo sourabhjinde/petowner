@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.util.*;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -21,14 +23,14 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Address address;
 
     @ManyToMany(mappedBy = "owners", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Pet> pets = new HashSet<>();
 
     private boolean deceased;
-
-    // Getters, setters, equals, hashCode, toString
 }
 
