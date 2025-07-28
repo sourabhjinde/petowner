@@ -23,7 +23,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Address address;
 
     @ManyToMany(mappedBy = "owners", fetch = FetchType.LAZY)

@@ -14,7 +14,7 @@ public interface PetRepository extends JpaRepository<Pet, Long> {
     @Query("""
         SELECT p
         FROM Pet p
-        JOIN p.owners o
+        JOIN FETCH p.owners o
         WHERE o.id = :userId
           AND p.deceased = false
     """)
@@ -22,26 +22,29 @@ public interface PetRepository extends JpaRepository<Pet, Long> {
 
     // Pets from a specific city
     @Query("""
-        SELECT DISTINCT p
-        FROM Pet p
-        JOIN p.owners o
-        WHERE o.address.city = :city
-          AND p.deceased = false
-          AND o.deceased = false
+    SELECT DISTINCT p
+    FROM Pet p
+    JOIN FETCH p.owners o
+    JOIN FETCH o.address a
+    WHERE a.city = :city
+      AND p.deceased = false
+      AND o.deceased = false
     """)
     List<Pet> findPetsByCity(@Param("city") String city);
 
     @Query("""
-        SELECT p
-        FROM Pet p JOIN p.owners o
-        WHERE o.gender = 'FEMALE' AND o.address.city = :city
+    SELECT DISTINCT p
+    FROM Pet p
+    JOIN FETCH p.owners o
+    JOIN FETCH o.address a
+    WHERE o.gender = 'FEMALE' AND a.city = :city
     """)
     List<Pet> findPetsByFemaleOwnersInCity(@Param("city") String city);
 
     @Query("""
-    SELECT p
+    SELECT DISTINCT p
     FROM Pet p
-    JOIN p.owners o
+    JOIN FETCH p.owners o
     WHERE LOWER(o.name) = LOWER(:name)
       AND LOWER(o.firstName) = LOWER(:firstName)
       AND p.deceased = false

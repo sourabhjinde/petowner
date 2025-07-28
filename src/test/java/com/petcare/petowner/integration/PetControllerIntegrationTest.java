@@ -13,7 +13,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -21,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Transactional
 class PetControllerIntegrationTest {
 
     @Autowired
@@ -94,10 +98,12 @@ class PetControllerIntegrationTest {
 
     @Test
     void shouldMarkPetAsDeceased() throws Exception {
+        User user = userRepository.findById(existingUserId).orElseThrow();
+
         Pet pet = new Pet();
         pet.setType(PetType.CAT);
         pet.setAge(12);
-        pet.setOwners(Set.of(userRepository.findById(existingUserId).orElseThrow()));
+        pet.setOwners(new HashSet<>(List.of(user)));
         pet = petRepository.save(pet);
 
         mockMvc.perform(patch("/pets/" + pet.getId() + "/death"))

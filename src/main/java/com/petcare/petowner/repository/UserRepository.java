@@ -15,9 +15,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("""
     SELECT DISTINCT u
     FROM User u
-    JOIN u.pets p
+    JOIN FETCH u.pets p
+    JOIN FETCH u.address a
     WHERE p.type = :type
-      AND u.address.city = :city
+      AND a.city = :city
       AND u.deceased = false
       AND p.deceased = false
     """)

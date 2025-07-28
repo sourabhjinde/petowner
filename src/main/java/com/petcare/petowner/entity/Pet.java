@@ -24,7 +24,7 @@ public class Pet {
     @Enumerated(EnumType.STRING)
     private PetType type;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "pet_owner",
             joinColumns = @JoinColumn(name = "pet_id"),
